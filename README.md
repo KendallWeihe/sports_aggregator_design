@@ -1,6 +1,9 @@
 # sports_aggregator_design
 This repo houses the design plans for collecting sports statistics
 
+# DATA!!!
+- [check it out](https://www.mysportsfeeds.com/feed-pricing/)
+
 # DevOps thangs...
   - AWS Lambda
     - 3 different Lambda's (see below)
@@ -51,9 +54,6 @@ This repo houses the design plans for collecting sports statistics
     - collects stats for given event
 
 # todays_events Lambda design:
-  - structs:
-    - ...NOTE:
-      - use the same structs as `collect_stats` excluding the `Stats` struct
   - input:
     - None -- invoked via a CRON
   - output:
@@ -81,24 +81,6 @@ This repo houses the design plans for collecting sports statistics
         - invoke `collect_stats`
 
 # collect_stats Lambda design
-  - structs:
-    - League:
-      - string name
-      - array<Event>
-    - Event:
-      - Team home_team
-      - Team away_team
-      - time start_time
-    - Team:
-      - string name
-      - array <Player>
-    - Player:
-      - string name
-      - array <Stats> [cummulative over the season]
-      - array <Stats> [at current "live" time stamp]
-    - Stats:
-      - "template" based
-      - load data members from config files?
   - input:
     - JSON containing data relevant to event
     ```python
@@ -128,6 +110,40 @@ This repo houses the design plans for collecting sports statistics
     - parse HTML
       - add stats to structs
     - save files to S3
+
+# data structures:
+  - NOTE:
+    - share most of these structs across both the `todays_events` and `collect_stats` Lambda's
+  - League:
+    - string name
+    - array<Event>
+  - Event:
+    - Team home_team
+    - Team away_team
+    - time start_time
+  - Team:
+    - string name
+    - array <Player>
+  - Player:
+    - string name
+    - array <Stats> [cummulative over the season]
+    - array <Stats> [at current "live" time stamp]
+  - Stats:
+    - "template" based
+    - load data members from config files?
+  - DataCollection
+    - NOTE: the idea...
+      - abstract the data collection so that I can easily change to APIs or other/better methods of collecting data
+      - current method -- html parsing
+      - preferred method -- API -- but likely too expensive for the time being
+    - html_parser html
+    - func Set()
+      - intialize the html parser
+    - func Get()
+      - inputs:
+        - html tag identifiers
+      - outputs:
+        - tag value
 
 # Questions:
   - can I load a struct based on a JSON config in Go?
