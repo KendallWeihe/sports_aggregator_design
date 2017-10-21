@@ -5,16 +5,16 @@ This repo houses the design plans for collecting sports statistics
   - AWS Lambda
     - 3 different Lambda's (see below)
     - code written in Go
-  - CloudWatch Event (CRON)
+  - CloudWatch Events (CRON)
   - S3 to store data
     - maybe a database instead...?
 
 # S3 storage outline:
   - Stats_configs
-    - nba_team_config
-    - nba_player_config
-    - nfl_team_config
-    - nfl_player_config
+    - nba_team_config.json
+    - nba_player_config.json
+    - nfl_team_config.json
+    - nfl_player_config.json
     - ...
   - League_1
     - Date_1
@@ -52,7 +52,8 @@ This repo houses the design plans for collecting sports statistics
 
 # todays_events Lambda design:
   - structs:
-    - ...
+    - ...NOTE:
+      - use the same structs as `collect_stats` excluding the `Stats` struct
   - input:
     - None -- invoked via a CRON
   - output:
@@ -143,3 +144,4 @@ This repo houses the design plans for collecting sports statistics
       ```
   - can I run concurrent processes on an AWS Lambda written in Go?
     - i.e. each event would start their own process
+  - how can I share the `Structs` Go code across the `todays_events` and `collect_stats` Lambda's?
