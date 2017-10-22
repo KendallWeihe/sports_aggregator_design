@@ -1,0 +1,10 @@
+quarter
+time
+
+jumpBall
+fieldGoalAttempt
+rebound
+turnover
+foul
+freeThrowAttempt
+substitution

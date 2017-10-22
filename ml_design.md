@@ -17,12 +17,27 @@
       - cummulative stats at time of game
         - ...?
       - time
-      - team identifier (ranked)
-      - player identifier (ranked)
-      - data type (numerical identifier based on rank)
-      - data value (outcome -- normalized)
-      - ...NOTE: various data types will require extended data points
-        - i.e. sometimes there are multiple players involved
+      - data types... (see below)
+        - fill in columns for particular type
+        - 0 out all other columns/types
+        - example...
+          ```csv
+            previous_stats || 1:33 || 0,0,0... || 1,0.75,0.3,0,0,1... || 0,0,0...
+          ```
+  - the idea...
+    - write a program that can dynamically generate datasets based on configuration files
+    - example config.json...
+      ```python
+        {
+          "include_cummulative_stats": true,
+          "play_types": [
+            "fieldGoalAttempt",
+            "rebound",
+            "..."
+          ],
+          "number_of_plays": 100
+        }
+      ```
 
   - NOTE on normalization...
     - try normalizing data relative to the game stats
@@ -30,16 +45,53 @@
     - ... the "in the moment" vs "the long term"
 
   - NOTE on ranking...
-    - try ranking relative to the game stats
-    - try ranking relative to the entire...
-
     - PLAYERS:
       - try ranking relative to the individual game
       - try ranking relative to the entire league
-
-    - DATA TYPE:
-      - there is only one type of ranking for data types
-
+    - TEAMS:
+      - ...?
     - RANKING ALGORITHM...
       - ...?
       - regression?
+
+# data types:
+  - fieldGoalAttempt
+    - team
+    - player
+    - points
+    - outcome
+    - shotType
+    - assist? (boolean)
+    - blocked? (boolean)
+    - location???
+  - rebound
+    - team
+    - player
+    - Off/Def? (boolean)
+  - turnover
+    - team
+    - stolenByPlayer
+    - lostByPlayer
+    - turnoverType
+    - isStolen
+  - foul
+    - team
+    - drawnByPlayer
+    - penalizedPlayer
+    - foulType
+    - isPersonal?
+    - isTechnical?
+    - isFlagrant1?
+    - isFlagrant2?
+    - location???
+  - freeThrowAttempt
+    - team
+    - player
+    - totalAttempts
+    - attemptNum
+    - outcome
+  - substitution???
+    - team
+    - outgoingPlayer
+    - incomingPlayer
+  - jumpBall
