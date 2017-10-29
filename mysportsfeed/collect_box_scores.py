@@ -12,12 +12,12 @@ msf.authenticate("kendallweihe", os.environ["PWD_MSF"])
 
 def get_dates():
     game_dates = []
-    year = "2014"
-    for i in range(11, 13):
+    year = "2016"
+    for i in range(10, 13):
         for j in range(1, 32):
             date = "{}{}{}".format(year, i, str(j).zfill(2))
             game_dates.append(date)
-    year = "2015"
+    year = "2017"
     for i in range(1, 8):
         for j in range(1, 32):
             date = "{}{}{}".format(year, str(i).zfill(2), str(j).zfill(2))
@@ -56,7 +56,7 @@ def main():
     game_dates = get_dates()
     for date in game_dates:
 
-        date = "20161025"
+        # pdb.set_trace()
         found_error = False
         while not found_error:
             try:
