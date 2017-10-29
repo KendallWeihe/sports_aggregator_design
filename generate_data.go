@@ -3,6 +3,7 @@ package main
 import (
     "fmt"
     "io/ioutil"
+    "strings"
 )
 
 type JSONList struct {
@@ -23,7 +24,7 @@ func check(e error) {
 }
 
 func read_json(path string, custom_json *JSON) bool {
-  raw, err := ioutil.ReadFile("./config.json")
+  raw, err := ioutil.ReadFile(path)
   check(err)
 
   start_index := 0
@@ -117,6 +118,8 @@ func construct_json(custom_json *JSON, raw *string, start_index int, end_index i
       value := (*raw)[next_quote+1:value_closing_quote]
       custom_json.key_value[key] = value
       index = value_closing_quote
+      // fmt.Printf(key)
+      // fmt.Printf(value)
     } else if next_curly_bracket < next_sq_bracket {
       closing_bracket := find_closing_bracket(raw, '{', '}', next_curly_bracket)
       nested_json := new(JSON)
@@ -137,6 +140,45 @@ func construct_json(custom_json *JSON, raw *string, start_index int, end_index i
   return true
 }
 
+func find_json_recursive(custom_json *JSON, keys []string, key_index int) (string, *JSONList) {
+
+  if val, ok := custom_json.key_value[keys[key_index]]; ok {
+    empty := new(JSONList)
+    return val, empty
+  }
+
+  if val, ok := custom_json.json_nested[keys[key_index]]; ok {
+    return find_json_recursive(val, keys, key_index+1)
+  }
+
+  if val, ok := custom_json.json_list[keys[key_index]]; ok {
+    if key_index == (len(keys)-1) {
+      return "", val
+    }
+    json_objs := custom_json.json_list[keys[key_index]].json_objs
+    for _, json_obj := range json_objs {
+      return find_json_recursive(json_obj, keys, key_index+1)
+    }
+  }
+
+  empty := new(JSONList)
+  return "", empty
+}
+
+/*
+  INPUTS:
+    - key in the form
+      - value is from an object inside a list: "path.to.key.with.[list].support"
+      - value is an actual a list: "path.to.key.with.[list]"
+  OUTPUTS:
+    - value
+*/
+func find(custom_json *JSON, key string) (string, *JSONList) {
+  keys := strings.Split(key, ".")
+  value, list := find_json_recursive(custom_json, keys, 0)
+  return value, list
+}
+
 /*
   flow of control:
     - read config file
@@ -149,7 +191,10 @@ func construct_json(custom_json *JSON, raw *string, start_index int, end_index i
 func main() {
 
   custom_json := new(JSON)
-  read_json("config.json", custom_json)
-  fmt.Printf("%+v\n", custom_json)
+  read_json("/home/kendall/Development/mfs_data/NBA_play_by_play/2016/20160304-POR-TOR.json", custom_json)
+
+  value, list := find(custom_json, "gameplaybyplay.plays.play")
+  fmt.Printf(value)
+  fmt.Printf("%v", list)
 
 }
