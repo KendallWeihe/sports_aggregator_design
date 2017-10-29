@@ -32,3 +32,18 @@
       - open file
       - iterate through data list:
         - add to variables
+
+
+# JSON stuff:
+  - find all indices of { and } and [ and ]
+  - ORDERING:
+    - first "
+    - following "
+    - colon
+      - "
+        - ,
+      - {
+        - " -- RECURSIVE CALL
+      - [
+        - " -- SEE BEGINNING
+        - { -- RECURSIVE CALL
