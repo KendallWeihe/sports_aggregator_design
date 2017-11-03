@@ -1,9 +1,8 @@
 {
   "input_path": "/home/kendall/Development/mfs_data/NBA_play_by_play/2017",
   "output_path": "/home/kendall/Development/mfs_data/NBA_play_by_play/2017_ml",
-  "data_list_key": "gameplaybyplay.plays.play",
-  "data_types": {
-    "time": "quarter&time",
+  "plays_key": "gameplaybyplay.plays.play",
+  "stat_types": {
     "fieldGoalAttempt": [
       "teamAbbreviation",
       "shotType",
