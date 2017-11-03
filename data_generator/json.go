@@ -139,31 +139,46 @@ func construct_json(custom_json *JSON, raw *string, start_index int, end_index i
   return true
 }
 
-func find_json_recursive(custom_json *JSON, keys []string, key_index int) (*string, *JSONList) {
+// OUTPUTS:
+//   - either:
+//     - value (string)
+//     - embedded json (JSON)
+//     - json list (JSONList)
+func find_json_recursive(custom_json *JSON, keys []string, key_index int) (*string, *JSON, *JSONList) {
 
-  if val, ok := custom_json.key_value[keys[key_index]]; ok {
-    empty_list := new(JSONList)
-    return &val, empty_list
+  empty_str := new(string)
+  empty_json := new(JSON)
+  empty_json_list := new(JSONList)
+
+  // value found
+  if value, ok := custom_json.key_value[keys[key_index]]; ok {
+    return &value, empty_json, empty_json_list
   }
 
-  if val, ok := custom_json.json_nested[keys[key_index]]; ok {
-    return find_json_recursive(val, keys, key_index+1)
-  }
-
-  if val, ok := custom_json.json_list[keys[key_index]]; ok {
+  // nested json found
+  if nested_json, ok := custom_json.json_nested[keys[key_index]]; ok {
+    // if the key requested is in fact a JSON object
     if key_index == (len(keys)-1) {
-      empty_str := new(string)
-      return empty_str, val
+      return empty_str, nested_json, empty_json_list
     }
+    // keep searching in nested JSON
+    return find_json_recursive(nested_json, keys, key_index+1)
+  }
+
+  // json list
+  if json_list, ok := custom_json.json_list[keys[key_index]]; ok {
+    // if the key is the last key in the key_string
+    if key_index == (len(keys)-1) {
+      return empty_str, empty_json, json_list
+    }
+    // if there is more to find ... TODO this is shit?
     json_objs := custom_json.json_list[keys[key_index]].json_objs
     for _, json_obj := range json_objs {
       return find_json_recursive(json_obj, keys, key_index+1)
     }
   }
 
-  empty_str := new(string)
-  empty_list := new(JSONList)
-  return empty_str, empty_list
+  return empty_str, empty_json, empty_json_list
 }
 
 /*
@@ -174,8 +189,8 @@ func find_json_recursive(custom_json *JSON, keys []string, key_index int) (*stri
   OUTPUTS:
     - value
 */
-func find(custom_json *JSON, key string) (*string, *JSONList) {
+func find(custom_json *JSON, key string) (*string, *JSON, *JSONList) {
   keys := strings.Split(key, ".")
-  value, list := find_json_recursive(custom_json, keys, 0)
-  return value, list
+  value, json, list := find_json_recursive(custom_json, keys, 0)
+  return value, json, list
 }

@@ -197,4 +197,12 @@ func main() {
   fmt.Printf(value)
   fmt.Printf("%v", list)
 
+  // TODO: 
+  //   - move JSON functionality into a different file
+  //     - find functionality should be by reference, not value
+  //   - build a config file
+  //   - iterate through plays:
+  //     - if data type exists: add to output file struct
+  //     - save file
+
 }

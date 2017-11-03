@@ -1,0 +1,25 @@
+{
+  "date": "today",
+  "time": "12",
+  "era": "never",
+  "alive": "true",
+  "test" : {
+    "testing": "tes"
+  },
+  "test2": [
+    {
+      "testing111": "value"
+    },
+    {
+      "testing112": "value2"
+    }
+  ],
+  "test3" : {
+    "test4" : [
+      "test5",
+      {
+        "test6": "test7"
+      }
+    ]
+  }
+}

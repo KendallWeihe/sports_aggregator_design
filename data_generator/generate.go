@@ -15,17 +15,22 @@ import (
 */
 func main() {
 
-  custom_json := new(JSON)
-  read_json("/home/kendall/Development/mfs_data/NBA_play_by_play/2016/20160304-POR-TOR.json", custom_json)
+  config_file := "config.json"
+  config := new(JSON)
+  read_json(config_file, config)
 
   key := "gameplaybyplay.plays.play"
   value, list := find(custom_json, key)
   fmt.Printf("%s", value)
   fmt.Printf("%v", list)
 
-  //   - build a config file
-  //   - iterate through plays:
-  //     - if data type exists: add to output file struct
-  //     - save file
+  // TODO:
+  //   - read config
+  //   - define output struct
+  //   - list input files
+  //   - iterate over files
+  //     - read file
+  //       - iterate over list
+  //         - add to output struct
 
 }
