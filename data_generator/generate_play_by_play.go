@@ -20,9 +20,16 @@ type StatType struct {
   keys []string
 }
 
-// func find_stat_type(stat_type string) StatType {
-//
-// }
+func enumerate_play_attr(play_type string, play_value string) string {
+  return ""
+  // TODO:
+  //   - basically a switch statement that invokes a functions in a separate program file
+  //   - ...
+  //   - if "teamAbbreviation":
+  //   - else if "Player.ID":
+  //   - else if "Location.":
+  //   - else use full play_type in default function
+}
 
 func get_stat_type_keys(name string, stat_types []StatType) []string {
   for _, stat_type := range stat_types {
@@ -80,13 +87,13 @@ func main() {
   // READ DATA FILES ------------------------------------
   input_files, err := ioutil.ReadDir(*input_path)
   check(err)
-  for _, file := range input_files {
+  for _, file := range input_files { // ITERATE OVER FILES
     file_path := *input_path + "/" + file.Name()
     input_data := new(JSON)
-    read_json(file_path, input_data)
+    read_json(file_path, input_data) // READ THE PLAY JSON OBJECT
 
     _, _, plays := find(input_data, *plays_key)
-    for _, play := range plays.json_objs {
+    for _, play := range plays.json_objs { // ITERATE OVER PLAYS
       quarter := play.key_value["quarter"]
       time := play.key_value["time"]
       fmt.Printf("Quarter: [%s] Time [%s]\n", quarter, time)
@@ -96,7 +103,7 @@ func main() {
       row[index] = quarter
       row[index] = time
 
-      for name, _ := range play.json_nested {
+      for name, _ := range play.json_nested { // ITERATE OVER THE PLAY TYPE ATTRIBUTES
         stat_type_keys := get_stat_type_keys(name, stat_types)
         for _, stat_type_key := range stat_type_keys {
           play_value, _, _ := find(play, stat_type_key)
