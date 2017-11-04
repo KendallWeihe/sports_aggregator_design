@@ -1,0 +1,555 @@
+{
+	"9228":
+		{
+			"enum": "0",
+			"first_name": "Draymond",
+			"last_name": "Green",
+			"position": "PF",
+		},
+	"9165":
+		{
+			"last_name": "Jones",
+			"position": "SF",
+			"enum": "0",
+			"first_name": "James",
+		},
+	"9472":
+		{
+			"first_name": "Tony",
+			"last_name": "Parker",
+			"position": "PG",
+			"enum": "0",
+		},
+	"9483":
+		{
+			"first_name": "Jonathon",
+			"last_name": "Simmons",
+			"position": "SG",
+			"enum": "0",
+		},
+	"9221":
+		{
+			"first_name": "Klay",
+			"last_name": "Thompson",
+			"position": "SG",
+			"enum": "0",
+		},
+	"9560":
+		{
+			"first_name": "Thanasis",
+			"last_name": "Antetokounmpo",
+			"position": "SF",
+			"enum": "0",
+		},
+	"9171":
+		{
+			"first_name": "Dahntay",
+			"last_name": "Jones",
+			"position": "SF",
+			"enum": "0",
+		},
+	"9446":
+		{
+			"position": "PF",
+			"enum": "0",
+			"first_name": "Meyers",
+			"last_name": "Leonard",
+		},
+	"9167":
+		{
+			"enum": "0",
+			"first_name": "J.R.",
+			"last_name": "Smith",
+			"position": "SG",
+		},
+	"9170":
+		{
+			"last_name": "McRae",
+			"position": "PG",
+			"enum": "0",
+			"first_name": "Jordan",
+		},
+	"9452":
+		{
+			"position": "SF",
+			"enum": "0",
+			"first_name": "Al-Farouq",
+			"last_name": "Aminu",
+		},
+	"9153":
+		{
+			"first_name": "Mike",
+			"last_name": "Dunleavy",
+			"position": "SF",
+			"enum": "0",
+		},
+	"10101":
+		{
+			"first_name": "Guillermo",
+			"last_name": "Hernangomez",
+			"position": "C",
+			"enum": "0",
+		},
+	"9248":
+		{
+			"first_name": "George",
+			"last_name": "Hill",
+			"position": "PG",
+			"enum": "0",
+		},
+	"10104":
+		{
+			"first_name": "DeAndre",
+			"last_name": "Liggins",
+			"position": "G",
+			"enum": "0",
+		},
+	"9224":
+		{
+			"first_name": "Shaun",
+			"last_name": "Livingston",
+			"position": "PG",
+			"enum": "0",
+		},
+	"9482":
+		{
+			"first_name": "Tim",
+			"last_name": "Duncan",
+			"position": "C",
+			"enum": "0",
+		},
+	"9517":
+		{
+			"first_name": "Erick",
+			"last_name": "Green",
+			"position": "PG",
+			"enum": "0",
+		},
+	"9506":
+		{
+			"first_name": "Gordon",
+			"last_name": "Hayward",
+			"position": "SF",
+			"enum": "0",
+		},
+	"9473":
+		{
+			"first_name": "Boris",
+			"last_name": "Diaw",
+			"position": "PF",
+			"enum": "0",
+		},
+	"9157":
+		{
+			"first_name": "Kyrie",
+			"last_name": "Irving",
+			"position": "PG",
+			"enum": "0",
+		},
+	"9169":
+		{
+			"first_name": "Tristan",
+			"last_name": "Thompson",
+			"position": "PF",
+			"enum": "0",
+		},
+	"9369":
+		{
+			"last_name": "Anthony",
+			"position": "SF",
+			"enum": "0",
+			"first_name": "Carmelo",
+		},
+	"9453":
+		{
+			"first_name": "Ed",
+			"last_name": "Davis",
+			"position": "PF",
+			"enum": "0",
+		},
+	"9444":
+		{
+			"position": "SF",
+			"enum": "0",
+			"first_name": "Maurice",
+			"last_name": "Harkless",
+		},
+	"9319":
+		{
+			"first_name": "Joe",
+			"last_name": "Johnson",
+			"position": "SF",
+			"enum": "0",
+		},
+	"9502":
+		{
+			"first_name": "Shelvin",
+			"last_name": "Mack",
+			"position": "PG",
+			"enum": "0",
+		},
+	"9447":
+		{
+			"first_name": "CJ",
+			"last_name": "McCollum",
+			"position": "SG",
+			"enum": "0",
+		},
+	"9186":
+		{
+			"first_name": "David",
+			"last_name": "Lee",
+			"position": "PF",
+			"enum": "0",
+		},
+	"10112":
+		{
+			"last_name": "McCaw",
+			"position": "G",
+			"enum": "0",
+			"first_name": "Patrick",
+		},
+	"9297":
+		{
+			"position": "C",
+			"enum": "0",
+			"first_name": "Chris",
+			"last_name": "Andersen",
+		},
+	"9477":
+		{
+			"first_name": "Danny",
+			"last_name": "Green",
+			"position": "SG",
+			"enum": "0",
+		},
+	"9155":
+		{
+			"first_name": "Justin",
+			"last_name": "Holiday",
+			"position": "SG",
+			"enum": "0",
+		},
+	"9223":
+		{
+			"first_name": "Andre",
+			"last_name": "Iguodala",
+			"position": "SF",
+			"enum": "0",
+		},
+	"9142":
+		{
+			"first_name": "Derrick",
+			"last_name": "Rose",
+			"position": "PG",
+			"enum": "0",
+		},
+	"9451":
+		{
+			"first_name": "Noah",
+			"last_name": "Vonleh",
+			"position": "PF",
+			"enum": "0",
+		},
+	"9227":
+		{
+			"last_name": "Looney",
+			"position": "PF",
+			"enum": "0",
+			"first_name": "Kevon",
+		},
+	"9512":
+		{
+			"first_name": "Trey",
+			"last_name": "Lyles",
+			"position": "PF",
+			"enum": "0",
+		},
+	"9183":
+		{
+			"first_name": "Zaza",
+			"last_name": "Pachulia",
+			"position": "C",
+			"enum": "0",
+		},
+	"9442":
+		{
+			"first_name": "Mason",
+			"last_name": "Plumlee",
+			"position": "C",
+			"enum": "0",
+		},
+	"9479":
+		{
+			"first_name": "David",
+			"last_name": "West",
+			"position": "PF",
+			"enum": "0",
+		},
+	"10109":
+		{
+			"first_name": "Davis",
+			"last_name": "Bertans",
+			"position": "F",
+			"enum": "0",
+		},
+	"9478":
+		{
+			"first_name": "Manu",
+			"last_name": "Ginobili",
+			"position": "SG",
+			"enum": "0",
+		},
+	"9503":
+		{
+			"first_name": "Rudy",
+			"last_name": "Gobert",
+			"position": "C",
+			"enum": "0",
+		},
+	"9510":
+		{
+			"first_name": "Rodney",
+			"last_name": "Hood",
+			"position": "SG",
+			"enum": "0",
+		},
+	"10103":
+		{
+			"first_name": "Mindaugas",
+			"last_name": "Kuzminskas",
+			"position": "F",
+			"enum": "0",
+		},
+	"9380":
+		{
+			"first_name": "Sasha",
+			"last_name": "Vujacic",
+			"position": "SG",
+			"enum": "0",
+		},
+	"9149":
+		{
+			"first_name": "Pau",
+			"last_name": "Gasol",
+			"position": "C",
+			"enum": "0",
+		},
+	"9127":
+		{
+			"enum": "0",
+			"first_name": "Courtney",
+			"last_name": "Lee",
+			"position": "SG",
+		},
+	"10102":
+		{
+			"first_name": "Ron",
+			"last_name": "Baker",
+			"position": "G",
+			"enum": "0",
+		},
+	"9218":
+		{
+			"first_name": "Stephen",
+			"last_name": "Curry",
+			"position": "PG",
+			"enum": "0",
+		},
+	"9509":
+		{
+			"first_name": "Dante",
+			"last_name": "Exum",
+			"position": "G",
+			"enum": "0",
+		},
+	"9514":
+		{
+			"last_name": "Neto",
+			"position": "PG",
+			"enum": "0",
+			"first_name": "Raul",
+		},
+	"9104":
+		{
+			"position": "SG",
+			"enum": "0",
+			"first_name": "Evan",
+			"last_name": "Turner",
+		},
+	"9516":
+		{
+			"first_name": "Jeff",
+			"last_name": "Withey",
+			"position": "C",
+			"enum": "0",
+		},
+	"9173":
+		{
+			"first_name": "JaVale",
+			"last_name": "McGee",
+			"position": "C",
+			"enum": "0",
+		},
+	"9373":
+		{
+			"first_name": "Kristaps",
+			"last_name": "Porzingis",
+			"position": "PF",
+			"enum": "0",
+		},
+	"9448":
+		{
+			"last_name": "Crabbe",
+			"position": "SG",
+			"enum": "0",
+			"first_name": "Allen",
+		},
+	"10110":
+		{
+			"position": "G",
+			"enum": "0",
+			"first_name": "Bryn",
+			"last_name": "Forbes",
+		},
+	"9159":
+		{
+			"enum": "0",
+			"first_name": "Channing",
+			"last_name": "Frye",
+			"position": "C",
+		},
+	"9513":
+		{
+			"last_name": "Ingles",
+			"position": "SF",
+			"enum": "0",
+			"first_name": "Joe",
+		},
+	"9164":
+		{
+			"position": "SF",
+			"enum": "0",
+			"first_name": "Richard",
+			"last_name": "Jefferson",
+		},
+	"9476":
+		{
+			"first_name": "Kawhi",
+			"last_name": "Leonard",
+			"position": "SF",
+			"enum": "0",
+		},
+	"9162":
+		{
+			"first_name": "Iman",
+			"last_name": "Shumpert",
+			"position": "SG",
+			"enum": "0",
+		},
+	"9475":
+		{
+			"first_name": "Kyle",
+			"last_name": "Anderson",
+			"position": "SF",
+			"enum": "0",
+		},
+	"9404":
+		{
+			"first_name": "Dewayne",
+			"last_name": "Dedmon",
+			"position": "C",
+			"enum": "0",
+		},
+	"9386":
+		{
+			"first_name": "Kevin",
+			"last_name": "Durant",
+			"position": "SF",
+			"enum": "0",
+		},
+	"9161":
+		{
+			"first_name": "Kevin",
+			"last_name": "Love",
+			"position": "PF",
+			"enum": "0",
+		},
+	"9474":
+		{
+			"first_name": "Patty",
+			"last_name": "Mills",
+			"position": "PG",
+			"enum": "0",
+		},
+	"9376":
+		{
+			"first_name": "Kyle",
+			"last_name": "O'Quinn",
+			"position": "PF",
+			"enum": "0",
+		},
+	"9480":
+		{
+			"first_name": "LaMarcus",
+			"last_name": "Aldridge",
+			"position": "PF",
+			"enum": "0",
+		},
+	"9158":
+		{
+			"first_name": "LeBron",
+			"last_name": "James",
+			"position": "SF",
+			"enum": "0",
+		},
+	"10111":
+		{
+			"first_name": "Nicolas",
+			"last_name": "Laprovittola",
+			"position": "G",
+			"enum": "0",
+		},
+	"9143":
+		{
+			"enum": "0",
+			"first_name": "Joakim",
+			"last_name": "Noah",
+			"position": "C",
+		},
+	"9382":
+		{
+			"first_name": "Lance",
+			"last_name": "Thomas",
+			"position": "PF",
+			"enum": "0",
+		},
+	"9231":
+		{
+			"enum": "0",
+			"first_name": "Anderson",
+			"last_name": "Varejao",
+			"position": "C",
+		},
+	"9230":
+		{
+			"last_name": "Clark",
+			"position": "SG",
+			"enum": "0",
+			"first_name": "Ian",
+		},
+	"9403":
+		{
+			"first_name": "Brandon",
+			"last_name": "Jennings",
+			"position": "PG",
+			"enum": "0",
+		},
+	"9445":
+		{
+			"position": "PG",
+			"enum": "0",
+			"first_name": "Damian",
+			"last_name": "Lillard",
+		},
+}

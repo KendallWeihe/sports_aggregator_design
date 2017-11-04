@@ -1,8 +1,12 @@
+// TODO:
+//   - if key contains list, return a list of values
+
 package main
 
 import (
     "io/ioutil"
     "strings"
+    "fmt"
 )
 
 type JSONList struct {
@@ -193,4 +197,59 @@ func find(custom_json *JSON, key string) (*string, *JSON, *JSONList) {
   keys := strings.Split(key, ".")
   value, json, list := find_json_recursive(custom_json, keys, 0)
   return value, json, list
+}
+
+func get_indent(indent_count int) string {
+  indent := ""
+  i := 0
+  for i < indent_count {
+    indent += "\t"
+    i += 1
+  }
+  return indent
+}
+
+func write_json_list(list JSONList, indent_count int) string {
+  indent := get_indent(indent_count)
+  output_str := fmt.Sprintf("%s[\n", indent)
+  indent_count += 1
+  indent = get_indent(indent_count)
+
+  for _, v := range list.values {
+    output_str += fmt.Sprintf("%s\"%s\",\n", indent, v)
+  }
+
+  for _, json := range list.json_objs {
+    output_str += fmt.Sprintf("%s\n%s,\n", indent, write_json(*json, indent_count+1))
+  }
+
+  indent_count -= 1
+  indent = get_indent(indent_count)
+  output_str += fmt.Sprintf("%s]", indent)
+  return output_str
+}
+
+func write_json(custom_json JSON, indent_count int) string {
+
+  indent := get_indent(indent_count)
+  output_str := fmt.Sprintf("%s{\n", indent)
+  indent_count += 1
+  indent = get_indent(indent_count)
+
+  for k, v := range custom_json.key_value {
+    output_str += fmt.Sprintf("%s\"%s\": \"%s\",\n", indent, k, v)
+  }
+
+  for k, json := range custom_json.json_nested {
+    output_str += fmt.Sprintf("%s\"%s\":\n%s,\n", indent, k, write_json(*json, indent_count+1))
+  }
+
+  for k, list := range custom_json.json_list {
+    output_str += fmt.Sprintf("%s\"%s\":\n%s,\n", indent, k, write_json_list(*list, indent_count+1))
+  }
+
+  indent_count -= 1
+  indent = get_indent(indent_count)
+  output_str += fmt.Sprintf("%s}", indent)
+  return output_str
 }

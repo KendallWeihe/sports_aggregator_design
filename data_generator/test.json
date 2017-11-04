@@ -1,0 +1,61 @@
+{
+	"input_path": "/home/kendall/Development/mfs_data/NBA_play_by_play/2017",
+	"output_path": "/home/kendall/Development/mfs_data/NBA_play_by_play/2017_ml",
+	"plays_key": "gameplaybyplay.plays.play",
+	"stat_types":
+		{
+			"fieldGoalAttempt":
+				[
+					"teamAbbreviation",
+					"shotType",
+					"shootingPlayer.ID",
+					"assistingPlayer.ID",
+					"blockingPlayer.ID",
+					"points",
+					"outcome",
+					"shotLocation.x",
+					"shotLocation.y",
+				],
+			"rebound":
+				[
+					"teamAbbreviation",
+					"offensiveOrDefensive",
+					"retrievingPlayer.ID",
+				],
+			"turnover":
+				[
+					"teamAbbreviation",
+					"turnoverType",
+					"stolenByPlayer.ID",
+					"lostByPlayer.ID",
+					"isStolen",
+				],
+			"foul":
+				[
+					"teamAbbreviation",
+					"foulType",
+					"penalizedPlayer.ID",
+					"drawnByPlayer.ID",
+					"isPersonal",
+					"isTechnical",
+					"isFlagrant1",
+					"isFlagrant2",
+					"foulLocation.x",
+					"foulLocation.y",
+				],
+			"freeThrowAttempt":
+				[
+					"teamAbbreviation",
+					"totalAttempts",
+					"shootingPlayer.ID",
+					"attemptNum",
+					"outcome",
+				],
+			"substitution":
+				[
+					"teamAbbreviation",
+					"incomingPlayer.ID",
+					"outgoingPlayer.ID",
+				],
+		},
+}
