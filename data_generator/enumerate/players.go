@@ -13,16 +13,16 @@ import (
 // OUTPUT:
 //   - file w/ enum values
 func main() {
-  key1 := "dailyplayerstats.playerstatsentry"
+  starting_key := "dailyplayerstats.playerstatsentry"
   id_key := "player.ID"
   first_name_key := "player.FirstName"
   last_name_key := "player.LastName"
   position_key := "player.Position"
 
-  count := 0
+  file_count := 0
   enum := 0
   input_path := "/home/kendall/Development/mfs_data/NBA_daily_player/2017"
-  output_file := "./players.json"
+  output_file := "/home/kendall/Development/sports_aggregator_design/data_generator/enumerate/output/players.json"
   output_json := new(JSON)
   output_json.key_value = make(map[string]string)
   output_json.json_nested = make(map[string]*JSON)
@@ -39,8 +39,8 @@ func main() {
     read_json(file_path, input_data) // READ THE PLAY JSON OBJECT
     fmt.Printf("JSON file loaded...\n")
 
-    _, _, playerstatsentry := find(input_data, key1)
-    fmt.Printf("Found key1...\n")
+    _, _, playerstatsentry := find(input_data, starting_key)
+    fmt.Printf("Found starting_key...\n")
     for _, player := range playerstatsentry.json_objs {
       id, _, _ := find(player, id_key)
       if _, ok := output_json.json_nested[*id]; !ok {
@@ -57,13 +57,14 @@ func main() {
         output_json.json_nested[*id].key_value["last_name"] = *last_name
         output_json.json_nested[*id].key_value["position"] = *position
         output_json.json_nested[*id].key_value["enum"] = fmt.Sprintf("%d", enum)
+        enum += 1
       }
     }
 
     output_json_str = write_json(*output_json, 0)
     // fmt.Printf("%s\n", output_json_str)
 
-    if count % 5 == 0 {
+    if file_count % 5 == 0 {
       file, err := os.Create(output_file)
       check(err)
       defer file.Close()
@@ -71,6 +72,6 @@ func main() {
       check(err)
       fmt.Printf("Saved to file!\n")
     }
-    count += 1
+    file_count += 1
   }
 }

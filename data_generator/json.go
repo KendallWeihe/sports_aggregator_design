@@ -119,7 +119,7 @@ func construct_json(custom_json *JSON, raw *string, start_index int, end_index i
     if next_quote < next_curly_bracket && next_quote < next_sq_bracket {
       value_closing_quote := find_specific_delim(raw, '"', next_quote+1)
       value := (*raw)[next_quote+1:value_closing_quote]
-      custom_json.key_value[key] = value
+      custom_json.key_value[key] = value // TODO: lowercase?
       index = value_closing_quote
       // fmt.Printf(key)
       // fmt.Printf(value)
@@ -249,7 +249,7 @@ func write_json(custom_json JSON, indent_count int) string {
   }
 
   indent_count -= 1
-  indent = get_indent(indent_count)
+  indent = get_indent(indent_count) // TODO: remove the last comma
   output_str += fmt.Sprintf("%s}", indent)
   return output_str
 }
