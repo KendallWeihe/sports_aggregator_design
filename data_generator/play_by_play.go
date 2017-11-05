@@ -4,6 +4,7 @@ import (
     "fmt"
     "io/ioutil"
     // "reflect"
+    "color"
 )
 
 type Row struct {
@@ -18,17 +19,6 @@ type DataFile struct {
 type StatType struct {
   name string
   keys []string
-}
-
-func enumerate_play_attr(play_type string, play_value string) string {
-  return ""
-  // TODO:
-  //   - basically a switch statement that invokes a functions in a separate program file
-  //   - ...
-  //   - if "teamAbbreviation":
-  //   - else if "Player.ID":
-  //   - else if "Location.":
-  //   - else use full play_type in default function
 }
 
 func get_stat_type_keys(name string, stat_types []StatType) []string {
@@ -72,7 +62,7 @@ func get_stat_types(f_stat_types *JSON) ([]StatType, int) {
 func main() {
 
   // READ CONFIG FILE ------------------------------------
-  config_file := "config.json"
+  config_file := "config_pbp.json"
   config := new(JSON)
   read_json(config_file, config)
 
@@ -106,15 +96,16 @@ func main() {
       for name, _ := range play.json_nested { // ITERATE OVER THE PLAY TYPE ATTRIBUTES
         stat_type_keys := get_stat_type_keys(name, stat_types)
         for _, stat_type_key := range stat_type_keys {
-          play_value, _, _ := find(play, stat_type_key)
-          // TODO: enumerate the play_value
-          row[index] = *play_value
+          stat_value, _, _ := find(play, stat_type_key)
+          // TODO: enumerate the stat_value
+          enumerated := enumerate_play_attr(stat_type_key, *stat_value)
+          row[index] = enumerated
           index += 1
         }
       }
 
-      fmt.Printf("Row: [%v]\n", row)
+      colorized_output := fmt.Sprintf("Row: [%v]\n\n", row)
+      color.Cyan(colorized_output)
     }
   }
-
 }

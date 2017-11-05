@@ -9,7 +9,7 @@
       "shootingPlayer.ID",
       "assistingPlayer.ID",
       "blockingPlayer.ID",
-      "points",
+      "Points",
       "outcome",
       "shotLocation.x",
       "shotLocation.y"
