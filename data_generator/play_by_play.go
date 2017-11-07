@@ -4,7 +4,12 @@ import (
     "fmt"
     "io/ioutil"
     // "reflect"
-    "color"
+    "encoding/csv"
+    "os"
+    // "color"
+    "log"
+    "strconv"
+    "strings"
 )
 
 type Row struct {
@@ -67,7 +72,7 @@ func main() {
   read_json(config_file, config)
 
   input_path, _, _ := find(config, "input_path")
-  // output_path, _, _ := find(config, "output_path")
+  output_path, _, _ := find(config, "output_path")
   plays_key, _, _ := find(config, "plays_key")
   _, f_stat_types, _ := find(config, "stat_types")
 
@@ -78,34 +83,67 @@ func main() {
   input_files, err := ioutil.ReadDir(*input_path)
   check(err)
   for _, file := range input_files { // ITERATE OVER FILES
+    fmt.Printf("Generating for file [%s]...\n", file.Name())
     file_path := *input_path + "/" + file.Name()
     input_data := new(JSON)
     read_json(file_path, input_data) // READ THE PLAY JSON OBJECT
 
     _, _, plays := find(input_data, *plays_key)
+    var table [][]string
     for _, play := range plays.json_objs { // ITERATE OVER PLAYS
       quarter := play.key_value["quarter"]
       time := play.key_value["time"]
-      fmt.Printf("Quarter: [%s] Time [%s]\n", quarter, time)
+      // fmt.Printf("Quarter: [%s] Time [%s]\n", quarter, time)
+      minutes, err := strconv.ParseFloat(strings.Split(time, ":")[0], 64)
+      check(err)
+      seconds, err := strconv.ParseFloat(strings.Split(time, ":")[1], 64)
+      check(err)
+      time_in_seconds := (minutes * 60.0) + seconds
 
-      index := 0
-      row := make([]string, num_columns)
-      row[index] = quarter
-      row[index] = time
+      quarter_nomarlized, err := strconv.ParseFloat(quarter, 64)
+      check(err)
+      quarter_nomarlized = quarter_nomarlized / 4.0
+      time_normalized := time_in_seconds / (12.0 * 60.0)
+
+      row := make([]string, num_columns+2)
+      row[0] = fmt.Sprintf("%f", quarter_nomarlized)
+      row[1] = fmt.Sprintf("%f", time_normalized)
+      // TODO: add a play_type column
+      index := 2
+      for index < (num_columns+2) {
+        row[index] = "0.0"
+        index += 1
+      }
+      index = 2
 
       for name, _ := range play.json_nested { // ITERATE OVER THE PLAY TYPE ATTRIBUTES
         stat_type_keys := get_stat_type_keys(name, stat_types)
         for _, stat_type_key := range stat_type_keys {
+          // ENUMERATE THE STAT VALUE
           stat_value, _, _ := find(play, stat_type_key)
-          // TODO: enumerate the stat_value
           enumerated := enumerate_play_attr(stat_type_key, *stat_value)
           row[index] = enumerated
           index += 1
         }
       }
 
-      colorized_output := fmt.Sprintf("Row: [%v]\n\n", row)
-      color.Cyan(colorized_output)
+      // colorized_output := fmt.Sprintf("Num columns: %d, Len row: %d, Row: [%v]\n", num_columns, len(row) row)
+      // color.Cyan(colorized_output)
+      table = append(table, row)
+      // colorized_output = fmt.Sprintf("Table: [%v]\n\n", table)
+      // color.Magenta(colorized_output)
     }
+
+    // WRITE TO OUTPUT FILE
+    output_path := *output_path + "/" + file.Name() + ".csv"
+    output_file, err := os.Create(output_path)
+    check(err)
+    w := csv.NewWriter(output_file)
+  	w.WriteAll(table) // calls Flush internally
+
+  	if err := w.Error(); err != nil {
+  		log.Fatalln("error writing csv:", err)
+  	}
+    output_file.Close()
   }
 }
