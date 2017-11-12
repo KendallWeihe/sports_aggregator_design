@@ -12,15 +12,6 @@ import (
     "strings"
 )
 
-type Row struct {
-  elements []string
-}
-
-type DataFile struct {
-  columns []string
-  rows []Row
-}
-
 type StatType struct {
   name string
   keys []string
@@ -72,6 +63,7 @@ func main() {
   read_json(config_file, config)
 
   input_path, _, _ := find(config, "input_path")
+  box_score_path, _, _ := find(config, "box_score_path")
   output_path, _, _ := find(config, "output_path")
   plays_key, _, _ := find(config, "plays_key")
   _, f_stat_types, _ := find(config, "stat_types")
@@ -83,10 +75,13 @@ func main() {
   input_files, err := ioutil.ReadDir(*input_path)
   check(err)
   for _, file := range input_files { // ITERATE OVER FILES
+    // TODO: read all files at once -- possible speed improvement
     fmt.Printf("Generating for file [%s]...\n", file.Name())
     file_path := *input_path + "/" + file.Name()
     input_data := new(JSON)
     read_json(file_path, input_data) // READ THE PLAY JSON OBJECT
+
+    _, _, score
 
     _, _, plays := find(input_data, *plays_key)
     var table [][]string

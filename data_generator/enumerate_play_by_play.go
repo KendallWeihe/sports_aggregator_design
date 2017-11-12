@@ -23,6 +23,10 @@ var turnover_type_path = "enumerate/output/turnoverType.json"
 var turnover_type_data = new(JSON)
 var err_tt = read_json(turnover_type_path, turnover_type_data)
 
+var foul_type_path = "enumerate/output/foulType.json"
+var foul_type_data = new(JSON)
+var err_ft = read_json(foul_type_path, foul_type_data)
+
 func stringInSlice(a string, list []string) bool {
     for _, b := range list {
         if b == a {
@@ -94,7 +98,18 @@ func turnoverType(turnover_type string) float64 {
 }
 
 func foulType(foul_type string) float64 {
-  return -0.4
+  enum := 0.0
+  max_enum := float64(len(foul_type_data.key_value))
+  for k, v := range foul_type_data.key_value {
+    if k == foul_type {
+      v_float, err := strconv.ParseFloat(v, 64)
+      check(err)
+      enum = v_float
+      break
+    }
+  }
+
+  return enum / max_enum
 }
 
 func true_false(stat_value string) float64 {
@@ -116,7 +131,7 @@ func enumerate_play_attr(stat_type_key string, stat_value string) string {
   // fmt.Printf("stat_type_key: %s, stat_value: %s\n", stat_type_key, stat_value)
 
   if stat_value == "" {
-    // fmt.Printf("stat_value == ''\n")
+    // fmt.Printf("DEBUG: stat_type_key = %s || stat_value == ''\n", stat_type_key)
     return "0.0"
   }
 
@@ -173,7 +188,7 @@ func enumerate_play_attr(stat_type_key string, stat_value string) string {
       default: enumerated = 0.0
     }
   } else {
-    fmt.Printf("DEBUG: %s, %s\n", stat_type_key, stat_value)
+    // fmt.Printf("DEBUG: %s, %s\n", stat_type_key, stat_value)
     enumerated = 0.0
   }
 

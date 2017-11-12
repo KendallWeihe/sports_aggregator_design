@@ -1,0 +1,10 @@
+{
+  "data_path": "",
+  "save_model_path": "",
+  "play_numer": 0,
+  "verification_percentage": 0.0,
+  "epochs": 1000,
+  "learning_rate": 0.001,
+  "dropout": 0.75,
+  "batch_size": 60
+}
