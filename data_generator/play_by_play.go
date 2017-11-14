@@ -81,8 +81,6 @@ func main() {
     input_data := new(JSON)
     read_json(file_path, input_data) // READ THE PLAY JSON OBJECT
 
-    _, _, score
-
     _, _, plays := find(input_data, *plays_key)
     var table [][]string
     for _, play := range plays.json_objs { // ITERATE OVER PLAYS
@@ -128,6 +126,26 @@ func main() {
       // colorized_output = fmt.Sprintf("Table: [%v]\n\n", table)
       // color.Magenta(colorized_output)
     }
+
+    // read box score result
+    box_score_file_path := *box_score_path + "/" + file.Name()
+    box_score_data := new(JSON)
+    read_json(box_score_file_path, box_score_data)
+    home_team_score, _, _ := find(box_score_data, "gameboxscore.quarterSummary.quarterTotals.homeScore")
+    away_team_score, _, _ := find(box_score_data, "gameboxscore.quarterSummary.quarterTotals.awayScore")
+    home_team_score_f, _ := strconv.ParseFloat(*home_team_score, 64)
+    away_team_score_f, _ := strconv.ParseFloat(*away_team_score, 64)
+    spread := home_team_score_f - away_team_score_f
+    spread_str := fmt.Sprint(spread)
+    row := make([]string, num_columns+2)
+    row[0] = spread_str
+    // fmt.Printf("Spread: %s\n", spread_str)
+    index := 1
+    for index < (num_columns+2) {
+      row[index] = "0.0"
+      index += 1
+    }
+    table = append(table, row)
 
     // WRITE TO OUTPUT FILE
     output_path := *output_path + "/" + file.Name() + ".csv"

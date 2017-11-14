@@ -1,8 +1,8 @@
 {
-  "data_path": "",
+  "data_path": "/home/kendall/Development/mfs_data/NBA_play_by_play/2017_ml",
   "save_model_path": "",
-  "play_numer": 0,
-  "verification_percentage": 0.0,
+  "play_number": 0,
+  "verification_percentage": 0.1,
   "epochs": 1000,
   "learning_rate": 0.001,
   "dropout": 0.75,
