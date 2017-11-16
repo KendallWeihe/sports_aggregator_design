@@ -72,11 +72,17 @@ def train(config, x, y, keep_prob, model_output):
                 batch_x = training_data[j:j+BATCH_SIZE, :, :]
                 batch_y = GROUND_TRUTH[j:j+BATCH_SIZE]
                 sess.run(optimizer, feed_dict={x: batch_x, y: batch_y, keep_prob: config["dropout"]})
-                train_acc, train_loss = sess.run([accuracy, cost], feed_dict={x: batch_x, y: batch_y, keep_prob: 1.0})
-                print("Training\tAcc: {}\tLoss: {}".format(train_acc, train_loss))
 
-                samples = sess.run(model_output, feed_dict={x: verification_data, keep_prob: 1.0})
-                print(samples)
+            print("Epoch: {}".format(i))
+            train_acc, train_loss = sess.run([accuracy, cost], feed_dict={x: batch_x, y: batch_y, keep_prob: 1.0})
+            print("Training\tAcc: {}\tLoss: {}".format(train_acc, train_loss))
+
+            sample_ground_truth = GROUND_TRUTH[int(DATA.shape[0]-num_verification_games):int(DATA.shape[0])]
+            samples = sess.run(model_output, feed_dict={x: verification_data, keep_prob: 1.0})
+            print("Samples: {}".format(samples))
+            abs_diff = np.absolute(np.subtract(samples, sample_ground_truth))
+            avg_diff = np.mean(abs_diff)
+            print("AVG PRED SPREAD: {}".format(avg_diff))
 
 def main():
     f = open("config.json", "r")

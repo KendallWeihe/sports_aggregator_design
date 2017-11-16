@@ -12,12 +12,12 @@ msf.authenticate("kendallweihe", os.environ["PWD_MSF"])
 
 def get_dates():
     game_dates = []
-    year = "2016"
+    year = "2015"
     for i in range(10, 13):
         for j in range(1, 32):
             date = "{}{}{}".format(year, i, str(j).zfill(2))
             game_dates.append(date)
-    year = "2017"
+    year = "2016"
     for i in range(1, 8):
         for j in range(1, 32):
             date = "{}{}{}".format(year, str(i).zfill(2), str(j).zfill(2))
@@ -30,7 +30,7 @@ def get_daily_schedule(date):
     schedule = msf.msf_get_data(
                                 league="nba",
                                 feed="daily_game_schedule",
-                                season="2016-2017-regular",
+                                season="2015-2016-regular",
                                 format="json",
                                 fordate=date,
                                 force=True,
@@ -43,7 +43,7 @@ def get_play_by_play(game_id):
     play_by_play = msf.msf_get_data(
                                     league="nba",
                                     feed="game_playbyplay",
-                                    season="2016-2017-regular",
+                                    season="2015-2016-regular",
                                     format="json",
                                     gameid=game_id,
                                     force=True,

@@ -1,7 +1,7 @@
 {
-  "input_path": "/home/kendall/Development/mfs_data/NBA_play_by_play/2017",
-  "box_score_path": "/home/kendall/Development/mfs_data/NBA_box_scores/2017",
-  "output_path": "/home/kendall/Development/mfs_data/NBA_play_by_play/2017_ml",
+  "input_path": "/home/kendall/Development/mfs_data/NBA_play_by_play/2016",
+  "box_score_path": "/home/kendall/Development/mfs_data/NBA_box_scores/2016",
+  "output_path": "/home/kendall/Development/mfs_data/NBA_play_by_play/ml",
   "plays_key": "gameplaybyplay.plays.play",
   "stat_types": {
     "fieldGoalAttempt": [
