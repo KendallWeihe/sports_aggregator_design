@@ -73,6 +73,13 @@ def train(config, x, y, keep_prob, model_output):
                 batch_y = GROUND_TRUTH[j:j+BATCH_SIZE]
                 sess.run(optimizer, feed_dict={x: batch_x, y: batch_y, keep_prob: config["dropout"]})
 
+            print("Training data example predictions...")
+            samples = sess.run(model_output, feed_dict={x: batch_x, keep_prob: 1.0})
+            print("Samples: {}".format(samples))
+            abs_diff = np.absolute(np.subtract(samples, batch_y))
+            avg_diff = np.mean(abs_diff)
+            print("AVG PRED SPREAD: {}\n".format(avg_diff))
+
             print("Epoch: {}".format(i))
             train_acc, train_loss = sess.run([accuracy, cost], feed_dict={x: batch_x, y: batch_y, keep_prob: 1.0})
             print("Training\tAcc: {}\tLoss: {}".format(train_acc, train_loss))
@@ -82,7 +89,7 @@ def train(config, x, y, keep_prob, model_output):
             print("Samples: {}".format(samples))
             abs_diff = np.absolute(np.subtract(samples, sample_ground_truth))
             avg_diff = np.mean(abs_diff)
-            print("AVG PRED SPREAD: {}".format(avg_diff))
+            print("AVG PRED SPREAD: {}\n\n".format(avg_diff))
 
 def main():
     f = open("config.json", "r")

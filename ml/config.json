@@ -3,7 +3,7 @@
   "save_model_path": "",
   "play_number": 0,
   "verification_percentage": 0.1,
-  "epochs": 50000,
+  "epochs": 500000,
   "learning_rate": 0.001,
   "dropout": 0.75,
   "batch_size": 60
